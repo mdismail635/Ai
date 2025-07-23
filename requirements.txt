@@ -1,0 +1,9 @@
+# নতুন requirements.txt ফাইল তৈরি করুন
+echo "Flask==2.3.2
+Pillow==9.5.0
+PyMuPDF==1.23.5
+python-docx==0.8.11
+pytesseract==0.3.10
+opencv-python==4.7.0.72
+pdf2image==1.16.3
+python-magic==0.4.27" > requirements.txt
