@@ -1,3 +1,5 @@
+# নতুন ফাইল তৈরি করুন
+echo "from flask import Flask, render_template, request, send_file, jsonify, redirect, url_for
 import os
 import subprocess
 import time
@@ -5,21 +7,18 @@ import uuid
 import threading
 import logging
 import magic
-import json
-from flask import Flask, render_template, request, send_file, jsonify, redirect, url_for
 from PIL import Image
-import fitz  # PyMuPDF
+import fitz
 import pytesseract
 import cv2
 import numpy as np
 from docx import Document
 from pdf2image import convert_from_path
 
-# Configure Flask app
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['DOWNLOAD_FOLDER'] = 'static/downloads'
-app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 * 1024  # 10GB max file size
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024 * 1024
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -55,7 +54,7 @@ os.makedirs(app.config['DOWNLOAD_FOLDER'], exist_ok=True)
 def index():
     return render_template('index.html', 
                          video_formats=SUPPORTED_VIDEO_FORMATS,
-                         has_google_ads=True)  # গুগল অ্যাডস সক্রিয়
+                         has_google_ads=True)
 
 @app.route('/progress/<task_id>')
 def get_progress(task_id):
@@ -72,8 +71,8 @@ def convert():
     
     # Get conversion type and additional parameters
     conversion_type = request.form['conversion_type']
-    output_format = request.form.get('output_format', 'mp4')  # Default to MP4
-    quality = request.form.get('quality', 'medium')  # Default quality
+    output_format = request.form.get('output_format', 'mp4')
+    quality = request.form.get('quality', 'medium')
     
     # Generate unique task ID
     task_id = str(uuid.uuid4())
